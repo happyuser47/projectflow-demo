@@ -56,3 +56,4 @@ export function isDemoMode() {
   // 5. Any other remote web hosting (e.g., Netlify, Render, custom demo domains)
   return true;
 }
+
