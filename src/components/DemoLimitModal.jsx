@@ -22,13 +22,13 @@ export default function DemoLimitModal({ isOpen, onClose, reason = 'general' }) 
   const contentMap = {
     task_limit: {
       badge: 'Preview Limit Reached',
-      title: 'Ready for Unlimited Tasks?',
-      desc: 'You have tested task creation in the live demo! To manage unlimited tasks and projects for your real work, get the full offline edition.',
+      title: 'Task Limit Reached (2/2 Test Tasks)',
+      desc: 'You have created the maximum of 2 test tasks allowed in the live preview. To create unlimited tasks and projects for your real work, purchase the full offline edition.',
     },
     project_limit: {
       badge: 'Project Limit Reached',
-      title: 'Ready for Unlimited Projects?',
-      desc: 'In this live preview, you can test 1 custom project. The full version includes unlimited projects with custom colors and dedicated notes.',
+      title: 'Project Limit Reached (1/1 Test Project)',
+      desc: 'You have created the maximum of 1 custom project allowed in the live preview. The full version includes unlimited projects with custom colors and dedicated notes.',
     },
     export_disabled: {
       badge: 'Feature Reserved',

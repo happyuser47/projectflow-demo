@@ -13,7 +13,7 @@
 export const ETSY_STORE_URL = 'https://grafitly.etsy.com';
 
 export const DEMO_CONFIG = {
-  MAX_CUSTOM_TASKS: 3,
+  MAX_CUSTOM_TASKS: 2,
   MAX_CUSTOM_PROJECTS: 1,
 };
 

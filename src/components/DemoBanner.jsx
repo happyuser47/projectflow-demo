@@ -4,7 +4,7 @@ import { isDemoMode, ETSY_STORE_URL } from '../utils/demo';
 import { useApp } from '../context/AppContext';
 
 export default function DemoBanner({ onOpenDemoModal }) {
-  const { resetData } = useApp();
+  const { resetData, customTasksCount = 0, customProjectsCount = 0 } = useApp();
   const [resetting, setResetting] = useState(false);
 
   // If not in demo mode (e.g. running ProjectFlow.html locally), render NOTHING
@@ -20,15 +20,21 @@ export default function DemoBanner({ onOpenDemoModal }) {
     <div className="relative z-30 bg-gradient-to-r from-blue-700 via-indigo-700 to-violet-800 text-white px-3 sm:px-6 py-2 shadow-md flex-shrink-0 border-b border-white/10 animate-fade-in">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-4 max-w-7xl mx-auto">
         
-        {/* Left: Badge + Explanation */}
-        <div className="flex items-center gap-2.5 min-w-0 text-center sm:text-left">
+        {/* Left: Badge + Explanation + Live Counters */}
+        <div className="flex items-center gap-2.5 min-w-0 text-center sm:text-left flex-wrap sm:flex-nowrap justify-center sm:justify-start">
           <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-white/20 backdrop-blur-md text-amber-200 border border-white/20 flex-shrink-0">
             <Sparkles size={11} className="text-amber-300 animate-pulse" />
             <span>Interactive Demo</span>
           </div>
 
+          <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/10 text-[10px] font-bold text-blue-200 border border-white/10 flex-shrink-0">
+            <span>Test Tasks: {customTasksCount}/2</span>
+            <span className="opacity-40">|</span>
+            <span>Projects: {customProjectsCount}/1</span>
+          </div>
+
           <p className="text-[11px] sm:text-xs text-blue-100 font-medium leading-tight truncate">
-            <span>Test-drive all features freely! Session data resets on reload.</span>
+            <span>Session data resets on reload.</span>
             <span className="hidden md:inline ml-1 text-blue-200/80">Get the full offline edition on Etsy for lifetime use.</span>
           </p>
         </div>

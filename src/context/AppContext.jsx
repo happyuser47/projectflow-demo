@@ -9,6 +9,9 @@ import Toast from '../components/Toast';
 
 const AppContext = createContext(null);
 
+const DEFAULT_TASK_IDS = new Set(DEFAULT_TASKS.map(t => t.id));
+const DEFAULT_PROJECT_IDS = new Set(DEFAULT_PROJECTS.map(p => p.id));
+
 export function AppProvider({ children }) {
   const { isDark, toggleTheme } = useTheme();
 
@@ -66,25 +69,6 @@ export function AppProvider({ children }) {
   const [backupSnoozed, setBackupSnoozed] = useState(false);
   const [settingsTab, setSettingsTab] = useState('preferences');
 
-  // Project Modal state
-  const [projectModalState, setProjectModalState] = useState({ isOpen: false, project: null });
-
-  const openNewProjectModal = useCallback(() => {
-    if (isDemoMode() && projects.length >= DEFAULT_PROJECTS.length + DEMO_CONFIG.MAX_CUSTOM_PROJECTS) {
-      setDemoModalState({ isOpen: true, reason: 'project_limit' });
-      return;
-    }
-    setProjectModalState({ isOpen: true, project: null });
-  }, [projects.length]);
-
-  const openEditProjectModal = useCallback((project) => {
-    setProjectModalState({ isOpen: true, project });
-  }, []);
-
-  const closeProjectModal = useCallback(() => {
-    setProjectModalState({ isOpen: false, project: null });
-  }, []);
-
   // Demo Modal state
   const [demoModalState, setDemoModalState] = useState({ isOpen: false, reason: 'general' });
 
@@ -94,6 +78,42 @@ export function AppProvider({ children }) {
 
   const closeDemoModal = useCallback(() => {
     setDemoModalState(prev => ({ ...prev, isOpen: false }));
+  }, []);
+
+  // Demo Mode count & limits calculation
+  const customTasksCount = useMemo(() => {
+    return tasks.filter(t => !DEFAULT_TASK_IDS.has(t.id)).length;
+  }, [tasks]);
+
+  const customProjectsCount = useMemo(() => {
+    return projects.filter(p => !DEFAULT_PROJECT_IDS.has(p.id)).length;
+  }, [projects]);
+
+  const isTaskLimitReached = useMemo(() => {
+    return isDemoMode() && customTasksCount >= DEMO_CONFIG.MAX_CUSTOM_TASKS;
+  }, [customTasksCount]);
+
+  const isProjectLimitReached = useMemo(() => {
+    return isDemoMode() && customProjectsCount >= DEMO_CONFIG.MAX_CUSTOM_PROJECTS;
+  }, [customProjectsCount]);
+
+  // Project Modal state
+  const [projectModalState, setProjectModalState] = useState({ isOpen: false, project: null });
+
+  const openNewProjectModal = useCallback(() => {
+    if (isProjectLimitReached) {
+      openDemoModal('project_limit');
+      return;
+    }
+    setProjectModalState({ isOpen: true, project: null });
+  }, [isProjectLimitReached, openDemoModal]);
+
+  const openEditProjectModal = useCallback((project) => {
+    setProjectModalState({ isOpen: true, project });
+  }, []);
+
+  const closeProjectModal = useCallback(() => {
+    setProjectModalState({ isOpen: false, project: null });
   }, []);
 
   // Notes Drawer state
@@ -212,7 +232,7 @@ export function AppProvider({ children }) {
 
   // Project CRUD
   const addProject = useCallback((projectInput) => {
-    if (isDemoMode() && projects.length >= DEFAULT_PROJECTS.length + DEMO_CONFIG.MAX_CUSTOM_PROJECTS) {
+    if (isDemoMode() && customProjectsCount >= DEMO_CONFIG.MAX_CUSTOM_PROJECTS) {
       openDemoModal('project_limit');
       return null;
     }
@@ -233,7 +253,7 @@ export function AppProvider({ children }) {
     setProjects(prev => [...prev, newProject]);
     showToast(t('toast_project_created_title'), t('toast_project_created_msg', { name }), 'success');
     return newProject;
-  }, [projects.length, setProjects, showToast, t]);
+  }, [customProjectsCount, openDemoModal, projects.length, setProjects, showToast, t]);
 
   const updateProject = useCallback((id, updates, quiet = false) => {
     setProjects(prev => prev.map(p => p.id === id ? { ...p, ...updates } : p));
@@ -251,7 +271,7 @@ export function AppProvider({ children }) {
 
   // Task CRUD
   const addTask = useCallback((taskData) => {
-    if (isDemoMode() && tasks.length >= DEFAULT_TASKS.length + DEMO_CONFIG.MAX_CUSTOM_TASKS) {
+    if (isDemoMode() && customTasksCount >= DEMO_CONFIG.MAX_CUSTOM_TASKS) {
       openDemoModal('task_limit');
       return null;
     }
@@ -273,7 +293,7 @@ export function AppProvider({ children }) {
     setTasks(prev => [...prev, newTask]);
     showToast(t('toast_task_created_title'), t('toast_task_created_msg', { title: newTask.title }), 'success');
     return newTask;
-  }, [activeProjectId, projects, setTasks, showToast, t]);
+  }, [customTasksCount, openDemoModal, activeProjectId, projects, setTasks, showToast, t]);
 
   const updateTask = useCallback((id, updates, quiet = false) => {
     setTasks(prev => prev.map(t => t.id === id ? { ...t, ...updates } : t));
@@ -419,6 +439,10 @@ export function AppProvider({ children }) {
     notesDrawer, setNotesDrawer, openNotes, closeNotes,
     // Demo Mode & Guardrails
     isDemo: isDemoMode(),
+    customTasksCount,
+    customProjectsCount,
+    isTaskLimitReached,
+    isProjectLimitReached,
     demoModalState, openDemoModal, closeDemoModal,
     // System status
     isInitialized,
@@ -434,6 +458,7 @@ export function AppProvider({ children }) {
     addProject, updateProject, deleteProject,
     projectModalState, openNewProjectModal, openEditProjectModal, closeProjectModal,
     demoModalState, openDemoModal, closeDemoModal,
+    customTasksCount, customProjectsCount, isTaskLimitReached, isProjectLimitReached,
     addTask, updateTask, deleteTask, moveTask,
     addTeamMember, deleteTeamMember,
     resetData, clearAllData, showToast,

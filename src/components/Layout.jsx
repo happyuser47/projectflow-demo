@@ -28,6 +28,7 @@ export default function Layout() {
     demoModalState,
     openDemoModal,
     closeDemoModal,
+    isTaskLimitReached,
     t
   } = useApp();
   const [modalTask, setModalTask] = useState(null);
@@ -39,6 +40,11 @@ export default function Layout() {
   };
 
   const handleNewTask = (statusOverride, priorityOverride) => {
+    if (isTaskLimitReached) {
+      openDemoModal('task_limit');
+      return;
+    }
+
     let initial = null;
     if (typeof statusOverride === 'string') {
       initial = { status: statusOverride };
