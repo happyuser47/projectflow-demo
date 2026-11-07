@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useLayoutEffect, useCallback, useMemo } from 'react';
 import { PRESET_THEMES, applyThemeCSS, getHoverHex } from '../utils/themes';
 
 /**
@@ -70,8 +70,8 @@ export function useTheme() {
     return PRESET_THEMES.find(t => t.id === themeId) || PRESET_THEMES[0];
   }, [themeId, customAccent]);
 
-  // Sync Dark Mode class with <html>
-  useEffect(() => {
+  // Sync Dark Mode class with <html> synchronously
+  useLayoutEffect(() => {
     const root = document.documentElement;
     if (isDark) {
       root.classList.add('dark');
@@ -85,8 +85,8 @@ export function useTheme() {
     }
   }, [isDark]);
 
-  // Sync Compact Layout class with <html>
-  useEffect(() => {
+  // Sync Compact Layout class with <html> synchronously
+  useLayoutEffect(() => {
     const root = document.documentElement;
     if (compactLayout) {
       root.classList.add('compact-layout');
@@ -100,8 +100,8 @@ export function useTheme() {
     }
   }, [compactLayout]);
 
-  // Sync Theme CSS Variables with document root whenever theme changes
-  useEffect(() => {
+  // Sync Theme CSS Variables with document root synchronously before DOM paint
+  useLayoutEffect(() => {
     applyThemeCSS(activeThemeObj.primary, activeThemeObj.hover);
     try {
       localStorage.setItem('projectflow-theme-id', themeId);

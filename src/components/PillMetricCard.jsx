@@ -84,13 +84,17 @@ export default function PillMetricCard({ label, valueText, percentage = 100, col
             r={radius}
             fill="transparent"
             className={`${activeColor.circleProgress} transition-all duration-1000 ease-out`}
+            style={{ stroke: color === 'blue' ? 'var(--theme-accent)' : undefined }}
             strokeWidth={strokeWidth}
             strokeDasharray={circumference}
             strokeDashoffset={strokeDashoffset}
             strokeLinecap="round"
           />
         </svg>
-        <span className={`z-10 text-[11.5px] font-extrabold tracking-tight ${activeColor.text} drop-shadow-sm`}>
+        <span
+          className={`z-10 text-[11.5px] font-extrabold tracking-tight ${activeColor.text} drop-shadow-sm`}
+          style={{ color: color === 'blue' ? 'var(--theme-accent)' : undefined }}
+        >
           {valueText}
         </span>
       </div>

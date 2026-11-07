@@ -13,10 +13,16 @@ export function CloudSyncBannerCard({ onOpenPitch }) {
   const { t } = useApp();
 
   return (
-    <div className="relative overflow-hidden rounded-2xl p-5 sm:p-6 bg-gradient-to-br from-blue-600 via-indigo-600 to-violet-700 text-white shadow-xl shadow-blue-500/10 border border-blue-400/30">
+    <div
+      className="relative overflow-hidden rounded-2xl p-5 sm:p-6 text-white shadow-xl border border-white/20 transition-all duration-300"
+      style={{
+        background: 'linear-gradient(135deg, var(--theme-accent, #3b82f6) 0%, var(--theme-accent-hover, #1d4ed8) 100%)',
+        boxShadow: '0 10px 25px -5px var(--theme-accent-shadow, rgba(59, 130, 246, 0.3))'
+      }}
+    >
       {/* Decorative ambient background blur */}
       <div className="absolute -top-12 -right-12 w-48 h-48 bg-white/10 rounded-full blur-2xl pointer-events-none" />
-      <div className="absolute -bottom-8 -left-8 w-36 h-36 bg-indigo-400/20 rounded-full blur-xl pointer-events-none" />
+      <div className="absolute -bottom-8 -left-8 w-36 h-36 bg-black/10 rounded-full blur-xl pointer-events-none" />
 
       <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-5">
         <div className="space-y-2 max-w-xl">
@@ -31,11 +37,11 @@ export function CloudSyncBannerCard({ onOpenPitch }) {
             {t('cloud_banner_title') || 'Tired of Taking Manual Backups?'}
           </h3>
 
-          <p className="text-xs sm:text-[13px] text-blue-100/90 leading-relaxed">
+          <p className="text-xs sm:text-[13px] text-white/90 leading-relaxed">
             {t('cloud_banner_desc') || 'In the offline edition, your data only exists in this browser cache. If cleared or unbacked, work is lost. Upgrade to Online Cloud Sync for zero-maintenance automated backups and instant multi-device access.'}
           </p>
 
-          <div className="flex flex-wrap items-center gap-3 pt-1 text-[11px] text-blue-200 font-medium">
+          <div className="flex flex-wrap items-center gap-3 pt-1 text-[11px] text-white/90 font-medium">
             <span className="flex items-center gap-1">
               <CheckCircle2 size={13} className="text-emerald-300" />
               <span>{t('online_pro_1') || '100% Automated Cloud Backups'}</span>
@@ -50,7 +56,8 @@ export function CloudSyncBannerCard({ onOpenPitch }) {
         <div className="flex-shrink-0 flex items-center">
           <button
             onClick={onOpenPitch}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-bold text-xs sm:text-sm bg-white text-blue-700 hover:bg-blue-50 active:scale-97 shadow-lg shadow-black/10 transition-all cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl font-bold text-xs sm:text-sm bg-white hover:bg-slate-50 active:scale-97 shadow-lg shadow-black/10 transition-all cursor-pointer"
+            style={{ color: 'var(--theme-accent, #3b82f6)' }}
           >
             <span>{t('compare_editions_btn') || 'Compare Editions & Upgrade'}</span>
             <ArrowRight size={15} />

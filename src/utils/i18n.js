@@ -344,6 +344,17 @@ export const translations = {
     val_offline_full: '100% Offline native',
     val_offline_isolated: 'Isolated local storage (no sync)',
     val_online_hybrid: 'Offline mode with auto-sync when reconnected',
+
+    // Appearance & Themes
+    appearance: 'Appearance',
+    appearance_settings: 'Appearance Settings',
+    choose_aesthetic: 'Choose your workspace aesthetic',
+    theme_palettes: '10 Premium Themes',
+    custom_accent: 'Custom Accent Color',
+    try_own_hex: 'Try your own HEX color',
+    compact_task_layout: 'Compact task layout',
+    compact_task_desc: 'Streamlined task card density for high-volume Kanban & Table workflows.',
+    active_theme: 'Active Theme',
   },
 
   fr: {
@@ -683,6 +694,17 @@ export const translations = {
     val_offline_full: '100 % Hors ligne natif',
     val_offline_isolated: 'Stockage local isolé (pas de synchro)',
     val_online_hybrid: 'Mode hors ligne avec resynchronisation auto',
+
+    // Appearance & Themes
+    appearance: 'Apparence',
+    appearance_settings: 'Paramètres d’apparence',
+    choose_aesthetic: 'Choisissez l’esthétique de votre espace de travail',
+    theme_palettes: '10 thèmes premium',
+    custom_accent: 'Couleur d’accent personnalisée',
+    try_own_hex: 'Essayez votre propre code HEX',
+    compact_task_layout: 'Mise en page compacte',
+    compact_task_desc: 'Densité réduite des cartes pour les flux Kanban et Table.',
+    active_theme: 'Thème actif',
   },
 
   de: {
@@ -1022,6 +1044,17 @@ export const translations = {
     val_offline_full: '100 % Offline-nativ',
     val_offline_isolated: 'Isolierter lokaler Speicher (kein Sync)',
     val_online_hybrid: 'Offline-Modus mit automatischer Resynchronisierung',
+
+    // Appearance & Themes
+    appearance: 'Erscheinungsbild',
+    appearance_settings: 'Erscheinungsbild-Einstellungen',
+    choose_aesthetic: 'Wählen Sie Ihre Arbeitsbereich-Ästhetik',
+    theme_palettes: '10 Premium-Themen',
+    custom_accent: 'Benutzerdefinierte Akzentfarbe',
+    try_own_hex: 'Eigenen HEX-Code ausprobieren',
+    compact_task_layout: 'Kompaktes Aufgaben-Layout',
+    compact_task_desc: 'Kompaktere Aufgabendichte für Kanban- und Tabellenansichten.',
+    active_theme: 'Aktives Thema',
   },
 
   es: {
@@ -1361,6 +1394,17 @@ export const translations = {
     val_offline_full: '100% Nativo sin conexión',
     val_offline_isolated: 'Almacenamiento local aislado (sin sincro)',
     val_online_hybrid: 'Modo sin conexión con resincronización automática',
+
+    // Appearance & Themes
+    appearance: 'Apariencia',
+    appearance_settings: 'Ajustes de apariencia',
+    choose_aesthetic: 'Elige la estética de tu espacio de trabajo',
+    theme_palettes: '10 temas prémium',
+    custom_accent: 'Color de acento personalizado',
+    try_own_hex: 'Prueba tu propio color HEX',
+    compact_task_layout: 'Diseño compacto de tareas',
+    compact_task_desc: 'Mayor densidad de tarjetas para flujos de trabajo Kanban y Tabla.',
+    active_theme: 'Tema activo',
   },
 
   ja: {
@@ -1700,5 +1744,16 @@ export const translations = {
     val_offline_full: '100% オフラインネイティブ',
     val_offline_isolated: '孤立したローカル保存 (同期なし)',
     val_online_hybrid: 'オフライン対応 (再接続時に自動同期)',
+
+    // Appearance & Themes
+    appearance: '外観',
+    appearance_settings: '外観設定',
+    choose_aesthetic: 'ワークスペースのテーマを選択',
+    theme_palettes: '10種のプレミアムテーマ',
+    custom_accent: 'カスタムアクセントカラー',
+    try_own_hex: '任意のHEXカラーを入力',
+    compact_task_layout: 'コンパクトタスク表示',
+    compact_task_desc: 'カンバンやテーブルでの高密度表示に最適化します。',
+    active_theme: '適用中のテーマ',
   }
 };

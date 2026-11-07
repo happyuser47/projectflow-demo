@@ -55,7 +55,8 @@ export default function BackupReminderBanner() {
         <div className="flex items-center gap-2 pt-0.5">
           <button
             onClick={triggerBackup}
-            className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 active:scale-97 shadow-xs transition-all cursor-pointer whitespace-nowrap"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold text-white active:scale-97 shadow-xs transition-all cursor-pointer whitespace-nowrap"
+            style={{ backgroundColor: 'var(--theme-accent, #3b82f6)' }}
           >
             <Download size={13} />
             <span>{t('backup_now_short') || 'Backup Now'}</span>
@@ -63,9 +64,13 @@ export default function BackupReminderBanner() {
 
           <button
             onClick={openCloudPitch}
-            className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl text-xs font-bold text-blue-700 dark:text-blue-300 bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-700 border border-blue-200/80 dark:border-blue-500/30 shadow-xs transition-all cursor-pointer truncate"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl text-xs font-bold bg-white/80 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-700 border shadow-xs transition-all cursor-pointer truncate"
+            style={{
+              color: 'var(--theme-accent, #3b82f6)',
+              borderColor: 'var(--theme-accent-border, rgba(59, 130, 246, 0.3))'
+            }}
           >
-            <Cloud size={13} className="text-blue-600 dark:text-blue-400 flex-shrink-0" />
+            <Cloud size={13} style={{ color: 'var(--theme-accent, #3b82f6)' }} className="flex-shrink-0" />
             <span className="truncate">{t('cloud_edition_short') || 'Cloud Sync'}</span>
           </button>
         </div>
@@ -100,7 +105,8 @@ export default function BackupReminderBanner() {
         <div className="flex items-center gap-2 flex-shrink-0">
           <button
             onClick={triggerBackup}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 active:scale-97 shadow-sm transition-all cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-white active:scale-97 shadow-sm transition-all cursor-pointer"
+            style={{ backgroundColor: 'var(--theme-accent, #3b82f6)' }}
           >
             <Download size={13} />
             <span>{t('backup_now_btn')}</span>
@@ -108,9 +114,13 @@ export default function BackupReminderBanner() {
 
           <button
             onClick={openCloudPitch}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold text-blue-700 dark:text-blue-300 bg-white/70 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-700 border border-blue-200/80 dark:border-blue-500/30 shadow-xs transition-all cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-white/70 dark:bg-slate-800/80 hover:bg-white dark:hover:bg-slate-700 border shadow-xs transition-all cursor-pointer"
+            style={{
+              color: 'var(--theme-accent, #3b82f6)',
+              borderColor: 'var(--theme-accent-border, rgba(59, 130, 246, 0.3))'
+            }}
           >
-            <Cloud size={13} className="text-blue-600 dark:text-blue-400" />
+            <Cloud size={13} style={{ color: 'var(--theme-accent, #3b82f6)' }} />
             <span>{t('tired_of_backups_cta') || 'Tired of backups? Go Cloud'}</span>
           </button>
 

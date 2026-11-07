@@ -345,7 +345,8 @@ export default function TopBar({ onNewTask }) {
                         setBackupDropdownOpen(false);
                         await triggerBackup();
                       }}
-                      className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold shadow-sm transition-all cursor-pointer active:scale-97"
+                      className="flex-1 inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-white text-xs font-bold shadow-sm transition-all cursor-pointer active:scale-97"
+                      style={{ backgroundColor: 'var(--theme-accent, #3b82f6)' }}
                     >
                       <Download size={15} />
                       <span>{t('backup_now')}</span>

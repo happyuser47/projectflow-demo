@@ -119,18 +119,24 @@ export default function SettingsView() {
                   }}
                   className={`flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 px-3 sm:px-5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 whitespace-nowrap cursor-pointer flex-shrink-0 sm:flex-1 ${
                     isActive 
-                      ? 'bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 shadow-md shadow-slate-200/50 dark:shadow-none scale-[1.01]' 
+                      ? 'bg-white dark:bg-slate-900 shadow-md shadow-slate-200/50 dark:shadow-none scale-[1.01]' 
                       : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-white/40 dark:hover:bg-slate-700/30'
                   }`}
+                  style={{
+                    color: isActive ? 'var(--theme-accent)' : undefined,
+                  }}
                 >
-                  <Icon size={16} className={isActive ? 'text-blue-500' : 'text-slate-400'} />
+                  <Icon size={16} style={{ color: isActive ? 'var(--theme-accent)' : undefined }} />
                   <span>{tab.label}</span>
                   {tab.badge && (
-                    <span className={`text-[9px] font-extrabold px-1.5 py-0.5 rounded-full uppercase tracking-wider ml-1 ${
-                      isActive
-                        ? 'bg-blue-600 text-white shadow-xs'
-                        : 'bg-blue-500/15 text-blue-600 dark:text-blue-400 border border-blue-500/25'
-                    }`}>
+                    <span
+                      className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full uppercase tracking-wider ml-1 border transition-colors"
+                      style={{
+                        backgroundColor: isActive ? 'var(--theme-accent)' : 'var(--theme-accent-light)',
+                        color: isActive ? '#ffffff' : 'var(--theme-accent)',
+                        borderColor: isActive ? 'transparent' : 'var(--theme-accent-border)',
+                      }}
+                    >
                       {tab.badge}
                     </span>
                   )}

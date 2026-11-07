@@ -127,6 +127,8 @@ export function applyThemeCSS(primaryHex, hoverHex = null) {
   root.style.setProperty('--theme-accent-rgb', `${r}, ${g}, ${b}`);
   root.style.setProperty('--theme-accent-light', `rgba(${r}, ${g}, ${b}, 0.12)`);
   root.style.setProperty('--theme-accent-subtle', `rgba(${r}, ${g}, ${b}, 0.06)`);
-  root.style.setProperty('--theme-accent-border', `rgba(${r}, ${g}, ${b}, 0.3)`);
-  root.style.setProperty('--theme-accent-shadow', `rgba(${r}, ${g}, ${b}, 0.28)`);
+  root.style.setProperty('--theme-accent-border', `rgba(${r}, ${g}, ${b}, 0.28)`);
+  root.style.setProperty('--theme-accent-shadow', `rgba(${r}, ${g}, ${b}, 0.3)`);
+  root.style.setProperty('--theme-accent-gradient', `linear-gradient(135deg, ${hex} 0%, ${hover} 100%)`);
 }
+

@@ -458,8 +458,8 @@ body {
   border-radius: 10px;
   font-size: 14px;
   font-weight: 600;
-  color: white;
-  background: var(--theme-accent, #3b82f6);
+  color: white !important;
+  background: var(--theme-accent, #3478f5) !important;
   border: none;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -467,12 +467,81 @@ body {
 }
 
 .btn-primary:hover {
-  background: var(--theme-accent-hover, #2563eb);
-  box-shadow: 0 4px 12px var(--theme-accent-shadow, rgba(59, 130, 246, 0.3));
+  background: var(--theme-accent-hover, #2563eb) !important;
+  box-shadow: 0 4px 12px var(--theme-accent-shadow, rgba(52, 120, 245, 0.3)) !important;
 }
 
 .btn-primary:active {
   transform: scale(0.97);
+}
+
+/* =========================================================================
+   COMPREHENSIVE WORKSPACE THEME SYSTEM
+   Applies --theme-accent dynamically across the entire workspace
+   ========================================================================= */
+
+/* Hardcoded blue brand classes automatically map to active theme */
+.bg-blue-600,
+.bg-blue-500 {
+  background-color: var(--theme-accent, #3478f5) !important;
+}
+
+.hover\:bg-blue-500:hover,
+.hover\:bg-blue-600:hover,
+.hover\:bg-blue-700:hover {
+  background-color: var(--theme-accent-hover, #2563eb) !important;
+}
+
+.text-blue-600,
+.text-blue-500 {
+  color: var(--theme-accent, #3478f5) !important;
+}
+
+.border-blue-500,
+.border-blue-600 {
+  border-color: var(--theme-accent, #3478f5) !important;
+}
+
+.ring-blue-500,
+.ring-blue-600 {
+  --tw-ring-color: var(--theme-accent, #3478f5) !important;
+}
+
+/* Light / subtle brand tints */
+.bg-blue-50,
+.bg-blue-500\/10,
+.bg-blue-500\/15,
+.bg-blue-500\/20,
+.bg-blue-600\/10,
+.bg-blue-600\/15 {
+  background-color: var(--theme-accent-light, rgba(52, 120, 245, 0.12)) !important;
+}
+
+.text-blue-400,
+.dark .text-blue-400,
+.text-blue-700,
+.dark .text-blue-300 {
+  color: var(--theme-accent, #3478f5) !important;
+}
+
+.border-blue-200,
+.border-blue-300,
+.border-blue-500\/20,
+.border-blue-500\/25,
+.border-blue-500\/30,
+.dark .border-blue-500\/30 {
+  border-color: var(--theme-accent-border, rgba(52, 120, 245, 0.28)) !important;
+}
+
+/* Native form controls & selection */
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+  accent-color: var(--theme-accent, #3478f5) !important;
+}
+
+::selection {
+  background-color: var(--theme-accent, #3478f5);
+  color: #ffffff;
 }
 
 /* Dynamic Theme Accent Utilities */
