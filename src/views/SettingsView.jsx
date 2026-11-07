@@ -5,7 +5,8 @@ import { importAppData } from '../hooks/useDatabase';
 import { LANGUAGES } from '../utils/i18n';
 import ConfirmModal from '../components/ConfirmModal';
 import { CloudSyncPitchView, CloudSyncBannerCard } from '../components/CloudSyncPitch';
-import { Download, Upload, AlertTriangle, CheckCircle2, Users, Plus, X, Check, Trash2, Loader2, Globe, Database, RotateCcw, Eraser, ShieldCheck, ExternalLink, Clock, Bell, ShieldAlert, FileText, Cloud, Sparkles } from 'lucide-react';
+import AppearanceSettings from '../components/AppearanceSettings';
+import { Download, Upload, AlertTriangle, CheckCircle2, Users, Plus, X, Check, Trash2, Loader2, Globe, Database, RotateCcw, Eraser, ShieldCheck, ExternalLink, Clock, Bell, ShieldAlert, FileText, Cloud, Sparkles, Palette } from 'lucide-react';
 
 export default function SettingsView() {
   const {
@@ -92,6 +93,7 @@ export default function SettingsView() {
   };
 
   const tabs = [
+    { id: 'appearance', label: t('appearance') || 'Appearance', icon: Palette, badge: '10 Themes' },
     { id: 'preferences', label: t('preferences') || 'Preferences', icon: Globe },
     { id: 'team', label: t('team_members') || 'Team Members', icon: Users },
     { id: 'data', label: t('workspace_data') || 'Data Management', icon: Database },
@@ -137,6 +139,10 @@ export default function SettingsView() {
             })}
           </div>
         </div>
+
+        {activeTab === 'appearance' && (
+          <AppearanceSettings />
+        )}
 
         {activeTab === 'preferences' && (
           <div className="space-y-6 animate-fade-in pb-12">

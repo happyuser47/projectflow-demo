@@ -77,7 +77,10 @@ export default function Sidebar() {
       <aside className="hidden md:flex w-[60px] h-screen bg-navy-800 border-r border-slate-200 dark:border-slate-700/50 flex-col items-center py-4 flex-shrink-0 transition-all duration-300 select-none">
         {/* Top: App Logo & Expand Toggle */}
         <div className="flex flex-col items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md shadow-blue-500/20">
+          <div
+            className="w-8 h-8 rounded-lg flex items-center justify-center shadow-md text-white transition-colors"
+            style={{ backgroundColor: 'var(--theme-accent, #3b82f6)', boxShadow: '0 4px 12px var(--theme-accent-shadow, rgba(59, 130, 246, 0.3))' }}
+          >
             <Diamond size={16} className="text-white" />
           </div>
           <button
@@ -102,9 +105,13 @@ export default function Sidebar() {
                 key={v.id}
                 onClick={() => handleSelectView(v.id)}
                 className={`w-full p-2.5 rounded-xl transition-all cursor-pointer flex items-center justify-center relative group ${isActive
-                  ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/30'
+                  ? 'text-white'
                   : 'text-slate-400 hover:text-white hover:bg-white/5'
                   }`}
+                style={{
+                  backgroundColor: isActive ? 'var(--theme-accent, #3b82f6)' : undefined,
+                  boxShadow: isActive ? '0 4px 12px var(--theme-accent-shadow, rgba(59, 130, 246, 0.3))' : undefined,
+                }}
                 title={t(v.id)}
                 aria-label={t(v.id)}
               >
@@ -119,9 +126,13 @@ export default function Sidebar() {
           <button
             onClick={() => handleSelectView('settings')}
             className={`w-full p-2.5 rounded-xl transition-all cursor-pointer flex items-center justify-center ${activeView === 'settings'
-              ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/30'
+              ? 'text-white'
               : 'text-slate-400 hover:text-white hover:bg-white/5'
               }`}
+            style={{
+              backgroundColor: activeView === 'settings' ? 'var(--theme-accent, #3b82f6)' : undefined,
+              boxShadow: activeView === 'settings' ? '0 4px 12px var(--theme-accent-shadow, rgba(59, 130, 246, 0.3))' : undefined,
+            }}
             title={t('settings_title') || 'Settings'}
             aria-label={t('settings_title') || 'Settings'}
           >
@@ -140,7 +151,10 @@ export default function Sidebar() {
       {/* Header */}
       <div className="flex items-center justify-between px-5 py-4 border-b border-white/5">
         <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
+          <div
+            className="w-8 h-8 rounded-lg flex items-center justify-center shadow-lg text-white transition-colors"
+            style={{ backgroundColor: 'var(--theme-accent, #3b82f6)', boxShadow: '0 4px 12px var(--theme-accent-shadow, rgba(59, 130, 246, 0.3))' }}
+          >
             <Diamond size={16} className="text-white" />
           </div>
           <span className="text-white font-bold text-[15px] tracking-tight">ProjectFlow</span>

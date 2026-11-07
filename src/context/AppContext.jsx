@@ -13,7 +13,18 @@ const DEFAULT_TASK_IDS = new Set(DEFAULT_TASKS.map(t => t.id));
 const DEFAULT_PROJECT_IDS = new Set(DEFAULT_PROJECTS.map(p => p.id));
 
 export function AppProvider({ children }) {
-  const { isDark, toggleTheme } = useTheme();
+  const {
+    isDark,
+    toggleTheme,
+    themeId,
+    setThemeId,
+    customAccent,
+    setCustomAccent,
+    activeThemeObj,
+    compactLayout,
+    setCompactLayout,
+    presetThemes,
+  } = useTheme();
 
   const [isInitialized, setIsInitialized] = useState(false);
   const [toast, setToast] = useState(null);
@@ -406,8 +417,13 @@ export function AppProvider({ children }) {
   }, []);
 
   const value = useMemo(() => ({
-    // Theme
+    // Theme & Appearance
     isDark, toggleTheme,
+    themeId, setThemeId,
+    customAccent, setCustomAccent,
+    activeThemeObj,
+    compactLayout, setCompactLayout,
+    presetThemes,
     // Data
     projects, tasks, team, filteredTasks,
     // UI State
@@ -448,6 +464,11 @@ export function AppProvider({ children }) {
     isInitialized,
   }), [
     isDark, toggleTheme,
+    themeId, setThemeId,
+    customAccent, setCustomAccent,
+    activeThemeObj,
+    compactLayout, setCompactLayout,
+    presetThemes,
     projects, tasks, team, filteredTasks,
     activeProjectId, setActiveProjectId,
     activeView, setActiveView,

@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { useApp } from '../context/AppContext';
 import { STATUSES, PRIORITIES } from '../utils/constants';
 import { formatBackupDate, getRelativeBackupTime } from '../utils/helpers';
-import { Search, Plus, Sun, Moon, Filter, X, Menu, StickyNote, ChevronDown, Layers, Pencil, ShieldCheck, ShieldAlert, Clock, Download, CheckCircle2, Settings, Cloud, ChevronRight, ShoppingBag } from 'lucide-react';
+import { Search, Plus, Sun, Moon, Filter, X, Menu, StickyNote, ChevronDown, Layers, Pencil, ShieldCheck, ShieldAlert, Clock, Download, CheckCircle2, Settings, Cloud, ChevronRight, ShoppingBag, Palette } from 'lucide-react';
 
 export default function TopBar({ onNewTask }) {
   const {
@@ -18,6 +18,7 @@ export default function TopBar({ onNewTask }) {
     notesDrawer, openNotes, closeNotes,
     lastBackupDate, backupReminderDays, isBackupDue, triggerBackup, openBackupSettings, openCloudPitch, language,
     isDemo, openDemoModal,
+    activeThemeObj, setSettingsTab,
     t,
   } = useApp();
 
@@ -417,6 +418,23 @@ export default function TopBar({ onNewTask }) {
             aria-label={t('notes')}
           >
             <StickyNote size={18} />
+          </button>
+
+          {/* Theme Palette & Appearance button */}
+          <button
+            onClick={() => {
+              setSettingsTab('appearance');
+              setActiveView('settings');
+            }}
+            className="p-2 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100 dark:hover:bg-white/5 dark:hover:text-slate-300 transition-colors cursor-pointer relative group"
+            title={`Workspace Theme: ${activeThemeObj?.name || 'Default'} (Click to change)`}
+            aria-label="Appearance & Themes"
+          >
+            <Palette size={18} style={{ color: activeThemeObj?.primary }} />
+            <span
+              className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full border border-white dark:border-navy-900 shadow-xs"
+              style={{ backgroundColor: activeThemeObj?.primary }}
+            />
           </button>
 
           {/* Theme toggle */}

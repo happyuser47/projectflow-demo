@@ -45,9 +45,10 @@ export default function ProjectScopeBar({ className = '' }) {
             onClick={() => setActiveProjectId('all')}
             className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer flex-shrink-0 shadow-xs ${
               activeProjectId === 'all'
-                ? 'bg-blue-600 text-white shadow-blue-500/25 ring-2 ring-blue-500/20'
+                ? 'text-white'
                 : 'bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/60 border border-slate-200/80 dark:border-slate-700/60'
             }`}
+            style={activeProjectId === 'all' ? { backgroundColor: 'var(--theme-accent)', boxShadow: '0 2px 10px var(--theme-accent-shadow)' } : undefined}
             title={t('show_all_projects')}
           >
             <Layers size={13} className={activeProjectId === 'all' ? 'text-white' : 'text-slate-400'} />
@@ -73,9 +74,10 @@ export default function ProjectScopeBar({ className = '' }) {
                 onClick={() => setActiveProjectId(proj.id)}
                 className={`group flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer flex-shrink-0 border shadow-xs ${
                   isSelected
-                    ? 'bg-white dark:bg-navy-800 text-slate-900 dark:text-white border-blue-500/80 dark:border-blue-500/80 ring-2 ring-blue-500/20 shadow-sm'
+                    ? 'bg-white dark:bg-navy-800 text-slate-900 dark:text-white shadow-sm'
                     : 'bg-white dark:bg-navy-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700/60 border-slate-200/80 dark:border-slate-700/60'
                 }`}
+                style={isSelected ? { borderColor: 'var(--theme-accent)', boxShadow: '0 0 0 2px var(--theme-accent-light)' } : undefined}
                 title={`${t('filter_to')} ${proj.name}`}
               >
                 <div
@@ -85,7 +87,7 @@ export default function ProjectScopeBar({ className = '' }) {
                 <span className="truncate max-w-[90px] sm:max-w-[130px] md:max-w-[160px]">{proj.name}</span>
                 <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded-full tabular-nums ${
                   isSelected
-                    ? 'bg-blue-500/15 text-blue-600 dark:text-blue-400'
+                    ? 'bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200'
                     : 'bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400'
                 }`}>
                   {projTasks.length}
@@ -97,10 +99,15 @@ export default function ProjectScopeBar({ className = '' }) {
           {/* New Project Button */}
           <button
             onClick={() => openNewProjectModal()}
-            className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-semibold text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-500/10 hover:bg-blue-100 dark:hover:bg-blue-500/20 border border-blue-200 dark:border-blue-500/30 transition-all cursor-pointer flex-shrink-0 shadow-xs group"
+            className="flex items-center gap-1 sm:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all cursor-pointer flex-shrink-0 shadow-xs group"
+            style={{
+              color: 'var(--theme-accent)',
+              backgroundColor: 'var(--theme-accent-light)',
+              borderColor: 'var(--theme-accent-border)',
+            }}
             title={t('create_project')}
           >
-            <Plus size={13} className="text-blue-500 group-hover:scale-110 transition-transform" />
+            <Plus size={13} className="group-hover:scale-110 transition-transform" />
             <span>{t('new_project')}</span>
           </button>
         </div>

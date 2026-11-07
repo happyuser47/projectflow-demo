@@ -10,7 +10,17 @@
   --color-navy-600: #334155;
   --color-glass: rgba(255, 255, 255, 0.06);
   --color-glass-border: rgba(255, 255, 255, 0.1);
-  --color-sidebar-active: #3b82f6;
+  --color-sidebar-active: var(--theme-accent, #3b82f6);
+}
+
+:root {
+  --theme-accent: #3478f5;
+  --theme-accent-hover: #2563eb;
+  --theme-accent-rgb: 52, 120, 245;
+  --theme-accent-light: rgba(52, 120, 245, 0.12);
+  --theme-accent-subtle: rgba(52, 120, 245, 0.06);
+  --theme-accent-border: rgba(52, 120, 245, 0.3);
+  --theme-accent-shadow: rgba(52, 120, 245, 0.28);
 }
 
 /* Base */
@@ -357,8 +367,8 @@ body {
 
 .sidebar-link.active {
   color: #ffffff;
-  background: #3b82f6;
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  background: var(--theme-accent, #3b82f6);
+  box-shadow: 0 3px 12px var(--theme-accent-shadow, rgba(59, 130, 246, 0.3));
 }
 
 /* SVG Charts */
@@ -424,8 +434,8 @@ body {
 }
 
 .input-field:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: var(--theme-accent, #3b82f6);
+  box-shadow: 0 0 0 3px var(--theme-accent-light, rgba(59, 130, 246, 0.1));
 }
 
 .dark .input-field {
@@ -435,8 +445,8 @@ body {
 }
 
 .dark .input-field:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  border-color: var(--theme-accent, #3b82f6);
+  box-shadow: 0 0 0 3px var(--theme-accent-light, rgba(59, 130, 246, 0.2));
 }
 
 /* Button */
@@ -449,7 +459,7 @@ body {
   font-size: 14px;
   font-weight: 600;
   color: white;
-  background: #3b82f6;
+  background: var(--theme-accent, #3b82f6);
   border: none;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -457,12 +467,43 @@ body {
 }
 
 .btn-primary:hover {
-  background: #2563eb;
-  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  background: var(--theme-accent-hover, #2563eb);
+  box-shadow: 0 4px 12px var(--theme-accent-shadow, rgba(59, 130, 246, 0.3));
 }
 
 .btn-primary:active {
   transform: scale(0.97);
+}
+
+/* Dynamic Theme Accent Utilities */
+.theme-accent-bg {
+  background-color: var(--theme-accent) !important;
+}
+
+.theme-accent-text {
+  color: var(--theme-accent) !important;
+}
+
+.theme-accent-border {
+  border-color: var(--theme-accent) !important;
+}
+
+/* Compact Task Layout Mode */
+.compact-layout .task-card {
+  padding: 10px 12px;
+  margin-bottom: 6px;
+}
+
+.compact-layout .task-card h4 {
+  font-size: 12.5px;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.compact-layout .task-card .badge {
+  font-size: 10px;
+  padding: 1px 6px;
+  line-height: 14px;
 }
 
 /* Dropdown */
