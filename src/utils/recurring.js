@@ -136,3 +136,4 @@ export function getRecurrenceDescription(frequency, t) {
   const match = RECURRING_FREQUENCIES.find(f => f.id === frequency);
   return match ? (t ? t(`recur_${frequency}`) || match.label : match.label) : null;
 }
+

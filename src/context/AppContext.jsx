@@ -319,7 +319,7 @@ export function AppProvider({ children }) {
     );
 
     // In Live Demo Mode on Vercel:
-    if (isDemo && customTasksCount >= 2) {
+    if (isDemoMode() && customTasksCount >= DEMO_CONFIG.MAX_CUSTOM_TASKS) {
       showToast(
         t('recurring_task_demo_notice') || 'Recurring Task Completed (Demo Mode)',
         t('recurring_task_demo_msg', { title: completedTask.title, date: nextEndDate }) ||
@@ -351,7 +351,7 @@ export function AppProvider({ children }) {
     );
 
     return nextTask;
-  }, [isDemo, customTasksCount, setTasks, showToast, t]);
+  }, [customTasksCount, setTasks, showToast, t]);
 
   const updateTask = useCallback((id, updates, quiet = false) => {
     let completedRecurringTask = null;
