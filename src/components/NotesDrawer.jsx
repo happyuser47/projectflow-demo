@@ -388,7 +388,7 @@ export default function NotesDrawer({ onEditTask }) {
 
                   {/* Task Picker Dropdown Menu */}
                   {isTaskPickerOpen && (
-                    <div className="absolute left-0 right-0 top-full mt-1.5 bg-white dark:bg-navy-850 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 p-3 z-30 animate-fade-in flex flex-col gap-2.5 max-h-[380px]">
+                    <div className="absolute left-0 right-0 top-full mt-1.5 bg-white dark:bg-navy-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 p-3 z-30 animate-fade-in flex flex-col gap-2.5 max-h-[380px]">
                       {/* Filter Row */}
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {/* Project Filter */}

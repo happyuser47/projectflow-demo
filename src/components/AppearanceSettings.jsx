@@ -109,8 +109,8 @@ export default function AppearanceSettings() {
                   onClick={() => handleSelectTheme(theme.id)}
                   className={`group relative p-3.5 sm:p-4 rounded-2xl border text-center transition-all duration-200 cursor-pointer flex flex-col items-center justify-center gap-2.5 ${
                     isSelected
-                      ? 'bg-slate-50/90 dark:bg-navy-800 border-2 shadow-sm scale-[1.02]'
-                      : 'bg-white dark:bg-navy-850/80 border-slate-200/80 dark:border-slate-700/80 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-50/50'
+                      ? 'bg-slate-100/90 dark:bg-navy-800 border-2 shadow-sm scale-[1.02]'
+                      : 'bg-white dark:bg-navy-800/60 border-slate-200/80 dark:border-slate-700/80 hover:border-slate-300 dark:hover:border-slate-600 hover:bg-slate-50/70 dark:hover:bg-navy-700/60'
                   }`}
                   style={{
                     borderColor: isSelected ? theme.primary : undefined,
@@ -142,7 +142,7 @@ export default function AppearanceSettings() {
                     >
                       {theme.name}
                     </p>
-                    <p className="text-[10px] font-mono text-slate-400 uppercase mt-0.5">
+                    <p className="text-[10px] font-mono text-slate-400 dark:text-slate-400 uppercase mt-0.5">
                       {theme.primary}
                     </p>
                   </div>
@@ -185,7 +185,7 @@ export default function AppearanceSettings() {
                   onChange={handleHexInputChange}
                   placeholder="#E88FA8"
                   maxLength={7}
-                  className="w-28 sm:w-32 px-3 py-1.5 rounded-full border border-slate-300 dark:border-slate-600 bg-white dark:bg-navy-950 text-slate-800 dark:text-slate-100 font-mono font-bold uppercase text-xs tracking-wider text-center focus:outline-none focus:ring-2"
+                  className="w-28 sm:w-32 px-3 py-1.5 rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-navy-800 text-slate-800 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 font-mono font-bold uppercase text-xs tracking-wider text-center focus:outline-none focus:ring-2"
                   style={{
                     borderColor: themeId === 'custom' ? activeThemeObj.primary : undefined,
                   }}
@@ -208,7 +208,7 @@ export default function AppearanceSettings() {
           </div>
 
           {/* Compact Task Layout Setting */}
-          <div className="p-4 rounded-xl bg-slate-50/80 dark:bg-navy-950/60 border border-slate-200/80 dark:border-slate-800 flex items-start gap-3">
+          <div className="p-4 rounded-xl bg-slate-50/80 dark:bg-navy-800/50 border border-slate-200/80 dark:border-slate-700/80 flex items-start gap-3">
             <input
               type="checkbox"
               id="compactTaskLayout"

@@ -4,7 +4,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  --color-navy-950: #050b14;
   --color-navy-900: #0b1120;
+  --color-navy-850: #0e1726;
   --color-navy-800: #0f172a;
   --color-navy-700: #1e293b;
   --color-navy-600: #334155;
