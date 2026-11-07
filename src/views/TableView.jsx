@@ -3,7 +3,7 @@ import { useApp } from '../context/AppContext';
 import { STATUS_MAP, PRIORITY_MAP } from '../utils/constants';
 import { getInitials, formatDateShort, sortTasks } from '../utils/helpers';
 import ProjectScopeBar from '../components/ProjectScopeBar';
-import { ArrowUpDown, ArrowUp, ArrowDown, StickyNote } from 'lucide-react';
+import { ArrowUpDown, ArrowUp, ArrowDown, StickyNote, Repeat } from 'lucide-react';
 
 export default function TableView({ onEditTask }) {
   const { filteredTasks, projects, team, isDark, language, openNotes, t } = useApp();
@@ -97,6 +97,15 @@ export default function TableView({ onEditTask }) {
                         >
                           <StickyNote size={12} className="fill-amber-400/30" />
                         </button>
+                      )}
+
+                      {task.recurring && task.recurring !== 'none' && (
+                        <span
+                          className="text-blue-500 dark:text-blue-400 p-0.5 flex-shrink-0"
+                          title={`${t('recurring_task') || 'Recurring'}: ${t(`recur_${task.recurring}`) || task.recurring}`}
+                        >
+                          <Repeat size={12} />
+                        </span>
                       )}
                     </div>
                   </td>

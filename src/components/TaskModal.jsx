@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { STATUSES, PRIORITIES } from '../utils/constants';
-import { X, Trash2, AlertTriangle } from 'lucide-react';
+import { X, Trash2, AlertTriangle, Repeat, Sparkles } from 'lucide-react';
 import { getInitials } from '../utils/helpers';
+import { RECURRING_FREQUENCIES, computeNextRecurrenceDates } from '../utils/recurring';
 
 export default function TaskModal({ task, onClose }) {
   const { projects, team, addTask, updateTask, deleteTask, t } = useApp();
@@ -19,6 +20,7 @@ export default function TaskModal({ task, onClose }) {
     endDate: '',
     tags: '',
     notes: '',
+    recurring: 'none',
   });
 
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -36,6 +38,7 @@ export default function TaskModal({ task, onClose }) {
         endDate: task.endDate || '',
         tags: (task.tags || []).join(', '),
         notes: task.notes || '',
+        recurring: task.recurring || 'none',
       });
     }
   }, [task, projects]);
@@ -49,6 +52,7 @@ export default function TaskModal({ task, onClose }) {
       title: form.title.trim(),
       notes: form.notes || '',
       tags: form.tags.split(',').map(t => t.trim().toLowerCase()).filter(Boolean),
+      recurring: form.recurring || 'none',
     };
 
     if (isEditing) {
@@ -189,6 +193,74 @@ export default function TaskModal({ task, onClose }) {
                 className="input-field"
               />
             </div>
+          </div>
+
+          {/* Recurring Task Schedule (Premium Feature) */}
+          <div className="p-3 sm:p-3.5 rounded-xl border border-slate-200/90 dark:border-slate-700/80 bg-slate-50/60 dark:bg-navy-900/60 space-y-2.5">
+            <div className="flex items-center justify-between">
+              <label className="text-[12px] font-bold text-slate-700 dark:text-slate-200 uppercase tracking-wide flex items-center gap-1.5">
+                <Repeat size={13} style={{ color: 'var(--theme-accent)' }} />
+                <span>{t('recurring_task') || 'Recurring Task'}</span>
+              </label>
+              {form.recurring && form.recurring !== 'none' && (
+                <span
+                  className="text-[10px] font-extrabold px-2 py-0.5 rounded-full border transition-colors uppercase tracking-wider"
+                  style={{
+                    backgroundColor: 'var(--theme-accent-light)',
+                    color: 'var(--theme-accent)',
+                    borderColor: 'var(--theme-accent-border)',
+                  }}
+                >
+                  {t('active') || 'Active'}
+                </span>
+              )}
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <select
+                value={form.recurring}
+                onChange={e => handleChange('recurring', e.target.value)}
+                className="input-field text-xs sm:text-sm font-semibold"
+              >
+                {RECURRING_FREQUENCIES.map(f => (
+                  <option key={f.id} value={f.id}>
+                    {t(`recur_${f.id}`) || f.label}
+                  </option>
+                ))}
+              </select>
+
+              <div className="flex items-center text-[11px] text-slate-500 dark:text-slate-400 px-1 py-0.5 leading-tight">
+                {form.recurring === 'none' ? (
+                  <span>{t('recurring_none_hint') || 'One-time task. Does not repeat.'}</span>
+                ) : (
+                  <span className="font-medium text-slate-700 dark:text-slate-200">
+                    {t('recurring_active_hint') || 'When marked Done, the next scheduled occurrence will automatically be created in To Do.'}
+                  </span>
+                )}
+              </div>
+            </div>
+
+            {form.recurring && form.recurring !== 'none' && (
+              (() => {
+                const previewDates = computeNextRecurrenceDates(form.startDate, form.endDate, form.recurring);
+                return (
+                  <div
+                    className="flex items-center gap-2 p-2 rounded-lg text-xs border"
+                    style={{
+                      backgroundColor: 'var(--theme-accent-subtle)',
+                      borderColor: 'var(--theme-accent-border)',
+                      color: 'var(--theme-accent)',
+                    }}
+                  >
+                    <Repeat size={13} className="flex-shrink-0" />
+                    <span>
+                      {t('next_due_label') || 'Next occurrence will be scheduled for:'}{' '}
+                      <strong className="font-bold underline">{previewDates.nextEndDate}</strong>
+                    </span>
+                  </div>
+                );
+              })()
+            )}
           </div>
 
           {/* Tags */}

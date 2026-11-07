@@ -1,7 +1,7 @@
 import { useApp } from '../context/AppContext';
 import { PRIORITY_MAP, TAG_COLORS } from '../utils/constants';
 import { getInitials, getRelativeDueDate, isOverdue } from '../utils/helpers';
-import { Clock, AlertCircle, ChevronUp, Minus, ChevronDown, StickyNote } from 'lucide-react';
+import { Clock, AlertCircle, ChevronUp, Minus, ChevronDown, StickyNote, Repeat } from 'lucide-react';
 
 const PRIORITY_CONFIG = {
   urgent: {
@@ -105,6 +105,22 @@ export default function TaskCard({ task, onEdit, onDragStart }) {
               <StickyNote size={10} className="fill-amber-400/30 text-amber-600 dark:text-amber-400" />
               <span>{t('notes')}</span>
             </button>
+          )}
+
+          {/* Recurring indicator badge */}
+          {task.recurring && task.recurring !== 'none' && (
+            <span
+              className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-semibold border transition-colors select-none"
+              style={{
+                backgroundColor: 'var(--theme-accent-subtle)',
+                color: 'var(--theme-accent)',
+                borderColor: 'var(--theme-accent-border)',
+              }}
+              title={`${t('recurring_task') || 'Recurring'}: ${t(`recur_${task.recurring}`) || task.recurring}`}
+            >
+              <Repeat size={10} className="stroke-[2.5]" />
+              <span className="capitalize">{task.recurring === 'weekdays' ? 'Wkdays' : (task.recurring === 'biweekly' ? '2 Wks' : task.recurring)}</span>
+            </span>
           )}
         </div>
 

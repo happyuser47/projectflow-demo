@@ -93,20 +93,20 @@ export default function SettingsView() {
   };
 
   const tabs = [
-    { id: 'appearance', label: t('appearance') || 'Appearance', icon: Palette, badge: '10 Themes' },
-    { id: 'preferences', label: t('preferences') || 'Preferences', icon: Globe },
-    { id: 'team', label: t('team_members') || 'Team Members', icon: Users },
-    { id: 'data', label: t('workspace_data') || 'Data Management', icon: Database },
-    { id: 'cloud', label: t('cloud_edition_short') || 'Cloud Sync', icon: Cloud, badge: t('upgrade_badge') || 'UPGRADE' },
+    { id: 'appearance', label: t('appearance') || 'Appearance', shortLabel: t('appearance') || 'Appearance', icon: Palette, badge: '10' },
+    { id: 'preferences', label: t('preferences') || 'Preferences', shortLabel: t('preferences') || 'Preferences', icon: Globe },
+    { id: 'team', label: t('team_members') || 'Team', shortLabel: t('team') || 'Team', icon: Users },
+    { id: 'data', label: t('workspace_data') || 'Data', shortLabel: t('data') || 'Data', icon: Database },
+    { id: 'cloud', label: t('cloud_edition_short') || 'Cloud Sync', shortLabel: 'Cloud', icon: Cloud, badge: 'PRO' },
   ];
 
   return (
     <div className="p-3 sm:p-4 md:p-6 overflow-y-auto h-full flex flex-col items-center">
       <div className="w-full max-w-4xl">
         
-        {/* Settings Header with Premium Pill Tabs */}
+        {/* Settings Header with Clutter-Free, Zero-Scroll Pill Tabs */}
         <div className="mb-6 sticky top-0 bg-slate-50/90 dark:bg-[#0f172a]/90 backdrop-blur-md z-10 py-2 -mx-3 px-3 sm:-mx-4 sm:px-4 md:mx-0 md:px-0">
-          <div className="flex p-1.5 bg-slate-200/60 dark:bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-200/80 dark:border-slate-700/60 shadow-inner overflow-x-auto hide-scrollbar gap-1 touch-momentum">
+          <div className="grid grid-cols-5 p-1 sm:p-1.5 bg-slate-200/60 dark:bg-slate-800/60 backdrop-blur-md rounded-2xl border border-slate-200/80 dark:border-slate-700/60 shadow-inner gap-1 w-full">
             {tabs.map(tab => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
@@ -117,7 +117,7 @@ export default function SettingsView() {
                     setActiveTab(tab.id);
                     setSettingsTab(tab.id);
                   }}
-                  className={`flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 px-3 sm:px-5 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 whitespace-nowrap cursor-pointer flex-shrink-0 sm:flex-1 ${
+                  className={`flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-1.5 py-1.5 sm:py-2.5 px-1 sm:px-2 rounded-xl font-bold transition-all duration-200 cursor-pointer min-w-0 w-full ${
                     isActive 
                       ? 'bg-white dark:bg-slate-900 shadow-md shadow-slate-200/50 dark:shadow-none scale-[1.01]' 
                       : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 hover:bg-white/40 dark:hover:bg-slate-700/30'
@@ -125,12 +125,16 @@ export default function SettingsView() {
                   style={{
                     color: isActive ? 'var(--theme-accent)' : undefined,
                   }}
+                  title={tab.label}
                 >
-                  <Icon size={16} style={{ color: isActive ? 'var(--theme-accent)' : undefined }} />
-                  <span>{tab.label}</span>
+                  <Icon size={16} className="flex-shrink-0" style={{ color: isActive ? 'var(--theme-accent)' : undefined }} />
+                  <span className="text-[11px] sm:text-xs md:text-[13px] truncate text-center">
+                    <span className="hidden sm:inline">{tab.label}</span>
+                    <span className="sm:hidden">{tab.shortLabel}</span>
+                  </span>
                   {tab.badge && (
                     <span
-                      className="text-[9px] font-extrabold px-1.5 py-0.5 rounded-full uppercase tracking-wider ml-1 border transition-colors"
+                      className="hidden md:inline-flex text-[9px] font-extrabold px-1.5 py-0.2 rounded-full uppercase tracking-wider ml-0.5 border transition-colors flex-shrink-0"
                       style={{
                         backgroundColor: isActive ? 'var(--theme-accent)' : 'var(--theme-accent-light)',
                         color: isActive ? '#ffffff' : 'var(--theme-accent)',

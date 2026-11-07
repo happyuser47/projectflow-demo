@@ -5,6 +5,7 @@ import { DEFAULT_PROJECTS, DEFAULT_TASKS, DEFAULT_TEAM, AVATAR_COLORS } from '..
 import { generateId } from '../utils/helpers';
 import { translations } from '../utils/i18n';
 import { isDemoMode, DEMO_CONFIG } from '../utils/demo';
+import { computeNextRecurrenceDates } from '../utils/recurring';
 import Toast from '../components/Toast';
 
 const AppContext = createContext(null);
@@ -299,6 +300,7 @@ export function AppProvider({ children }) {
       endDate: taskData.endDate || '',
       tags: taskData.tags || [],
       notes: taskData.notes || '',
+      recurring: taskData.recurring || 'none',
       createdAt: new Date().toISOString(),
     };
     setTasks(prev => [...prev, newTask]);
@@ -306,12 +308,72 @@ export function AppProvider({ children }) {
     return newTask;
   }, [customTasksCount, openDemoModal, activeProjectId, projects, setTasks, showToast, t]);
 
+  // Premium Recurring Task Completion Handler
+  const handleRecurringCompletion = useCallback((completedTask) => {
+    if (!completedTask?.recurring || completedTask.recurring === 'none') return null;
+
+    const { nextStartDate, nextEndDate } = computeNextRecurrenceDates(
+      completedTask.startDate,
+      completedTask.endDate,
+      completedTask.recurring
+    );
+
+    // In Live Demo Mode on Vercel:
+    if (isDemo && customTasksCount >= 2) {
+      showToast(
+        t('recurring_task_demo_notice') || 'Recurring Task Completed (Demo Mode)',
+        t('recurring_task_demo_msg', { title: completedTask.title, date: nextEndDate }) ||
+          `Next occurrence for "${completedTask.title}" would be scheduled for ${nextEndDate} in the full edition.`,
+        'magic'
+      );
+      return null;
+    }
+
+    // In Full Edition (or within demo limit): spawn the next occurrence in To Do
+    const nextTask = {
+      ...completedTask,
+      id: generateId('task-'),
+      status: 'todo',
+      startDate: nextStartDate,
+      endDate: nextEndDate,
+      createdAt: new Date().toISOString(),
+      parentRecurringId: completedTask.parentRecurringId || completedTask.id,
+      recurrenceCount: (completedTask.recurrenceCount || 1) + 1,
+    };
+
+    setTasks(prev => [...prev, nextTask]);
+
+    showToast(
+      t('recurring_task_scheduled') || 'Recurring Task Scheduled',
+      t('recurring_task_next_msg', { title: completedTask.title, date: nextEndDate }) ||
+        `Next occurrence for "${completedTask.title}" scheduled for ${nextEndDate}.`,
+      'success'
+    );
+
+    return nextTask;
+  }, [isDemo, customTasksCount, setTasks, showToast, t]);
+
   const updateTask = useCallback((id, updates, quiet = false) => {
-    setTasks(prev => prev.map(t => t.id === id ? { ...t, ...updates } : t));
+    let completedRecurringTask = null;
+    setTasks(prev => prev.map(t => {
+      if (t.id === id) {
+        const updated = { ...t, ...updates };
+        if (t.status !== 'done' && updated.status === 'done' && updated.recurring && updated.recurring !== 'none') {
+          completedRecurringTask = updated;
+        }
+        return updated;
+      }
+      return t;
+    }));
+
+    if (completedRecurringTask) {
+      handleRecurringCompletion(completedRecurringTask);
+    }
+
     if (!quiet) {
       showToast(t('toast_task_updated_title'), t('toast_task_updated_msg'), 'info');
     }
-  }, [setTasks, showToast, t]);
+  }, [setTasks, handleRecurringCompletion, showToast, t]);
 
   const deleteTask = useCallback((id) => {
     setTasks(prev => prev.filter(t => t.id !== id));
@@ -319,8 +381,21 @@ export function AppProvider({ children }) {
   }, [setTasks, showToast, t]);
 
   const moveTask = useCallback((taskId, newStatus) => {
-    setTasks(prev => prev.map(t => t.id === taskId ? { ...t, status: newStatus } : t));
-  }, [setTasks]);
+    let completedRecurringTask = null;
+    setTasks(prev => prev.map(t => {
+      if (t.id === taskId) {
+        if (t.status !== 'done' && newStatus === 'done' && t.recurring && t.recurring !== 'none') {
+          completedRecurringTask = { ...t, status: 'done' };
+        }
+        return { ...t, status: newStatus };
+      }
+      return t;
+    }));
+
+    if (completedRecurringTask) {
+      handleRecurringCompletion(completedRecurringTask);
+    }
+  }, [setTasks, handleRecurringCompletion]);
 
   // Team management
   const addTeamMember = useCallback((name, role) => {

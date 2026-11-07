@@ -355,6 +355,22 @@ export const translations = {
     compact_task_layout: 'Compact task layout',
     compact_task_desc: 'Streamlined task card density for high-volume Kanban & Table workflows.',
     active_theme: 'Active Theme',
+
+    // Recurring Tasks
+    recurring_task: 'Recurring Task',
+    recurring_none_hint: 'One-time task. Does not repeat.',
+    recurring_active_hint: 'When marked Done, the next scheduled occurrence will automatically be created in To Do.',
+    next_due_label: 'Next occurrence will be scheduled for:',
+    recurring_task_scheduled: 'Recurring Task Scheduled',
+    recurring_task_next_msg: 'Next occurrence for "{title}" created for {date}.',
+    recurring_task_demo_notice: 'Recurring Task Completed (Demo Mode)',
+    recurring_task_demo_msg: 'Next recurrence for "{title}" would be scheduled for {date} in the full edition.',
+    recur_none: 'Does not repeat',
+    recur_daily: 'Daily (Every day)',
+    recur_weekdays: 'Weekdays (Mon - Fri)',
+    recur_weekly: 'Weekly (Every week)',
+    recur_biweekly: 'Bi-weekly (Every 2 weeks)',
+    recur_monthly: 'Monthly (Every month)',
   },
 
   fr: {
@@ -705,6 +721,22 @@ export const translations = {
     compact_task_layout: 'Mise en page compacte',
     compact_task_desc: 'Densité réduite des cartes pour les flux Kanban et Table.',
     active_theme: 'Thème actif',
+
+    // Recurring Tasks
+    recurring_task: 'Tâche récurrente',
+    recurring_none_hint: 'Tâche unique. Ne se répète pas.',
+    recurring_active_hint: 'Une fois marquée Terminée, la prochaine occurrence sera automatiquement créée dans À faire.',
+    next_due_label: 'Prochaine échéance prévue le :',
+    recurring_task_scheduled: 'Tâche récurrente planifiée',
+    recurring_task_next_msg: 'Prochaine occurrence pour « {title} » créée pour le {date}.',
+    recurring_task_demo_notice: 'Tâche récurrente terminée (Mode Démo)',
+    recurring_task_demo_msg: 'La prochaine occurrence pour « {title} » serait planifiée pour le {date} dans la version complète.',
+    recur_none: 'Ne se répète pas',
+    recur_daily: 'Quotidien (Chaque jour)',
+    recur_weekdays: 'Jours ouvrés (Lun - Ven)',
+    recur_weekly: 'Hebdomadaire (Chaque semaine)',
+    recur_biweekly: 'Toutes les 2 semaines',
+    recur_monthly: 'Mensuel (Chaque mois)',
   },
 
   de: {
@@ -1055,6 +1087,22 @@ export const translations = {
     compact_task_layout: 'Kompaktes Aufgaben-Layout',
     compact_task_desc: 'Kompaktere Aufgabendichte für Kanban- und Tabellenansichten.',
     active_theme: 'Aktives Thema',
+
+    // Recurring Tasks
+    recurring_task: 'Wiederkehrende Aufgabe',
+    recurring_none_hint: 'Einmalige Aufgabe. Wiederholt sich nicht.',
+    recurring_active_hint: 'Nach Fertigstellung wird das nächste Vorkommen automatisch in Zu erledigen erstellt.',
+    next_due_label: 'Nächste Fälligkeit geplant für:',
+    recurring_task_scheduled: 'Wiederkehrende Aufgabe geplant',
+    recurring_task_next_msg: 'Nächstes Vorkommen für „{title}“ für {date} erstellt.',
+    recurring_task_demo_notice: 'Wiederkehrende Aufgabe abgeschlossen (Demo-Modus)',
+    recurring_task_demo_msg: 'Nächstes Vorkommen für „{title}“ würde in der Vollversion für {date} geplant werden.',
+    recur_none: 'Wiederholt sich nicht',
+    recur_daily: 'Täglich (Jeden Tag)',
+    recur_weekdays: 'Werktage (Mo - Fr)',
+    recur_weekly: 'Wöchentlich (Jede Woche)',
+    recur_biweekly: 'Alle 2 Wochen',
+    recur_monthly: 'Monatlich (Jeden Monat)',
   },
 
   es: {
@@ -1405,6 +1453,22 @@ export const translations = {
     compact_task_layout: 'Diseño compacto de tareas',
     compact_task_desc: 'Mayor densidad de tarjetas para flujos de trabajo Kanban y Tabla.',
     active_theme: 'Tema activo',
+
+    // Recurring Tasks
+    recurring_task: 'Tarea recurrente',
+    recurring_none_hint: 'Tarea única. No se repite.',
+    recurring_active_hint: 'Al marcarse como completada, la siguiente ocurrencia se creará automáticamente en Por hacer.',
+    next_due_label: 'Siguiente vencimiento programado para:',
+    recurring_task_scheduled: 'Tarea recurrente programada',
+    recurring_task_next_msg: 'Siguiente ocurrencia de «{title}» creada para el {date}.',
+    recurring_task_demo_notice: 'Tarea recurrente completada (Modo Demo)',
+    recurring_task_demo_msg: 'La siguiente ocurrencia de «{title}» se programaría para el {date} en la versión completa.',
+    recur_none: 'No se repite',
+    recur_daily: 'Diario (Todos los días)',
+    recur_weekdays: 'Días laborales (Lun - Vie)',
+    recur_weekly: 'Semanal (Cada semana)',
+    recur_biweekly: 'Cada 2 semanas',
+    recur_monthly: 'Mensual (Cada mes)',
   },
 
   ja: {
@@ -1755,5 +1819,21 @@ export const translations = {
     compact_task_layout: 'コンパクトタスク表示',
     compact_task_desc: 'カンバンやテーブルでの高密度表示に最適化します。',
     active_theme: '適用中のテーマ',
+
+    // Recurring Tasks
+    recurring_task: '繰り返しタスク',
+    recurring_none_hint: '単発タスク (繰り返さない)',
+    recurring_active_hint: '完了すると、次のスケジュールタスクが自動的に「To Do」に作成されます。',
+    next_due_label: '次の期日予定:',
+    recurring_task_scheduled: '繰り返しタスクをスケジュールしました',
+    recurring_task_next_msg: '「{title}」の次回タスクを {date} に作成しました。',
+    recurring_task_demo_notice: '繰り返しタスク完了 (デモモード)',
+    recurring_task_demo_msg: '製品版では「{title}」の次回タスクが {date} に自動作成されます。',
+    recur_none: '繰り返さない',
+    recur_daily: '毎日',
+    recur_weekdays: '平日 (月〜金)',
+    recur_weekly: '毎週',
+    recur_biweekly: '隔週 (2週間ごと)',
+    recur_monthly: '毎月',
   }
 };

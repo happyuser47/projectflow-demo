@@ -87,6 +87,7 @@ export const DEFAULT_TASKS = [
   {
     id: 'task-4', title: 'Implement Navigation Component', description: 'Build the responsive navigation bar component', projectId: 'proj-1',
     status: 'in-progress', priority: 'medium', assigneeId: 'tm-2', startDate: daysFromNow(-3), endDate: daysFromNow(5), tags: ['frontend', 'component'],
+    recurring: 'weekly',
   },
   {
     id: 'task-5', title: 'Setup CI/CD Pipeline', description: 'Configure continuous integration and deployment pipeline', projectId: 'proj-1',

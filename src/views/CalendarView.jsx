@@ -154,10 +154,13 @@ export default function CalendarView({ onEditTask, onNewTask }) {
                       <div
                         key={task.id}
                         onClick={(e) => { e.stopPropagation(); onEditTask?.(task); }}
-                        className={`px-1.5 lg:px-2 py-0.5 lg:py-1 rounded-md text-[9px] lg:text-[10px] font-medium cursor-pointer transition-all hover:brightness-110 truncate border-l-[3px] flex-shrink-0 ${styles.bg} ${styles.text} ${styles.border}`}
-                        title={task.title}
+                        className={`px-1.5 lg:px-2 py-0.5 lg:py-1 rounded-md text-[9px] lg:text-[10px] font-medium cursor-pointer transition-all hover:brightness-110 truncate border-l-[3px] flex-shrink-0 flex items-center gap-1 ${styles.bg} ${styles.text} ${styles.border}`}
+                        title={task.recurring && task.recurring !== 'none' ? `↻ ${task.title} (${task.recurring})` : task.title}
                       >
-                        {task.title}
+                        {task.recurring && task.recurring !== 'none' && (
+                          <span className="text-[10px] opacity-75 font-bold flex-shrink-0">↻</span>
+                        )}
+                        <span className="truncate">{task.title}</span>
                       </div>
                     );
                   })}
