@@ -320,7 +320,7 @@ export default function Sidebar() {
           <span>{t('settings_title') || 'Settings'}</span>
         </button>
         <a
-          href="https://grafitly.etsy.com"
+          href="https://grafitly.etsy.com/listing/4606805658/project-manager-web-app"
           target="_blank"
           rel="noopener noreferrer"
           className="sidebar-link w-full text-slate-400 hover:text-white transition-colors flex items-center justify-between group"
@@ -338,7 +338,7 @@ export default function Sidebar() {
           <div className="flex items-center justify-between text-[11px] text-slate-400 font-medium">
             <span>© 2026 Grafitly</span>
             <a
-              href="https://grafitly.etsy.com"
+              href="https://grafitly.etsy.com/listing/4606805658/project-manager-web-app"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[10px] text-blue-400 hover:text-blue-300 hover:underline transition-colors font-semibold"

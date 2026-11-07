@@ -10,7 +10,7 @@
  * for paying customers.
  */
 
-export const ETSY_STORE_URL = 'https://grafitly.etsy.com';
+export const ETSY_STORE_URL = 'https://grafitly.etsy.com/listing/4606805658/project-manager-web-app';
 
 export const DEMO_CONFIG = {
   MAX_CUSTOM_TASKS: 2,

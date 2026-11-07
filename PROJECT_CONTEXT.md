@@ -376,7 +376,7 @@ Unlike standard web applications that depend on remote servers or IndexedDB data
 - Desktop collapsed rail (60px) and expanded drawer (270px).
 - Lists all primary views with dynamic icons.
 - Projects list with completion progress bars, edit modals, and delete confirmations.
-- Bottom footer with Settings link, "Report an Issue" link to Etsy (`https://grafitly.etsy.com`), and official Copyright (`© 2026 Grafitly`).
+- Bottom footer with Settings link, "Report an Issue" link to Etsy (`https://grafitly.etsy.com/listing/4606805658/project-manager-web-app`), and official Copyright (`© 2026 Grafitly`).
 
 #### 4. `ProjectScopeBar.jsx`
 - Horizontal scrollable pill track rendered at the top of Kanban, Gantt, Calendar, Table, and Matrix views.
@@ -506,7 +506,7 @@ For users who want automated multi-device synchronization without manual JSON fi
 - **Pain Point Framing:** Explains the limitations of browser-only storage (single-device lock, manual file management, risk of browser cache resets).
 - **Online Cloud Sync Benefits:** Automatic continuous cloud mirror, real-time multi-device sync (Mac, Windows, iOS, Android), live team collaboration, revision history rollback, and TLS 1.3 / AES-256 encryption.
 - **One-Click Proposal Summary:** `handleCopySummary()` copies a formatted proposal to the clipboard for sharing with decision-makers.
-- **Etsy Store Links:** Direct buttons linking to `https://grafitly.etsy.com`.
+- **Etsy Store Links:** Direct buttons linking to `https://grafitly.etsy.com/listing/4606805658/project-manager-web-app`.
 
 ---
 
