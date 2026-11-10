@@ -12,6 +12,12 @@ export const PRESET_THEMES = [
     primary: '#3478f5',
     hover: '#2563eb',
     description: 'Vibrant & focused classic corporate blue',
+    sidebar: {
+      bg: 'linear-gradient(180deg, #132440 0%, #0d192d 100%)',
+      bgDark: 'linear-gradient(180deg, #0f1c32 0%, #080f1b 100%)',
+      border: 'rgba(52, 120, 245, 0.22)',
+      textMuted: '#9cb1d4',
+    },
   },
   {
     id: 'blush',
@@ -19,6 +25,12 @@ export const PRESET_THEMES = [
     primary: '#e88fa8',
     hover: '#d4758f',
     description: 'Soft, aesthetic & warm pastel rose',
+    sidebar: {
+      bg: 'linear-gradient(180deg, #3b1725 0%, #270e18 100%)',
+      bgDark: 'linear-gradient(180deg, #280e18 0%, #18070e 100%)',
+      border: 'rgba(232, 143, 168, 0.22)',
+      textMuted: '#dbb9c3',
+    },
   },
   {
     id: 'sage',
@@ -26,6 +38,12 @@ export const PRESET_THEMES = [
     primary: '#6f9b82',
     hover: '#5b866e',
     description: 'Calm, organic & grounding herbal green',
+    sidebar: {
+      bg: 'linear-gradient(180deg, #1b3226 0%, #112018 100%)',
+      bgDark: 'linear-gradient(180deg, #14251c 0%, #0b1510 100%)',
+      border: 'rgba(111, 155, 130, 0.22)',
+      textMuted: '#b0cbbe',
+    },
   },
   {
     id: 'lavender',
@@ -33,6 +51,12 @@ export const PRESET_THEMES = [
     primary: '#9b83d1',
     hover: '#856bc0',
     description: 'Creative & balanced soft purple',
+    sidebar: {
+      bg: 'linear-gradient(180deg, #271b42 0%, #19102c 100%)',
+      bgDark: 'linear-gradient(180deg, #1d1433 0%, #100a1e 100%)',
+      border: 'rgba(155, 131, 209, 0.22)',
+      textMuted: '#c5badf',
+    },
   },
   {
     id: 'beige',
@@ -40,6 +64,12 @@ export const PRESET_THEMES = [
     primary: '#a48a71',
     hover: '#8e735a',
     description: 'Warm, cozy & sophisticated earth tone',
+    sidebar: {
+      bg: 'linear-gradient(180deg, #33271d 0%, #221912 100%)',
+      bgDark: 'linear-gradient(180deg, #241a12 0%, #150f09 100%)',
+      border: 'rgba(164, 138, 113, 0.22)',
+      textMuted: '#cdbfb2',
+    },
   },
   {
     id: 'coral',
@@ -47,6 +77,12 @@ export const PRESET_THEMES = [
     primary: '#d87d68',
     hover: '#c26652',
     description: 'Energetic, friendly & vibrant terracotta',
+    sidebar: {
+      bg: 'linear-gradient(180deg, #3a1d17 0%, #26110c 100%)',
+      bgDark: 'linear-gradient(180deg, #2a140f 0%, #180905 100%)',
+      border: 'rgba(216, 125, 104, 0.22)',
+      textMuted: '#dfb7af',
+    },
   },
   {
     id: 'teal',
@@ -54,6 +90,12 @@ export const PRESET_THEMES = [
     primary: '#278f88',
     hover: '#1f7771',
     description: 'Deep, crisp & refreshing ocean teal',
+    sidebar: {
+      bg: 'linear-gradient(180deg, #103331 0%, #0a2120 100%)',
+      bgDark: 'linear-gradient(180deg, #0c2624 0%, #061615 100%)',
+      border: 'rgba(39, 143, 136, 0.22)',
+      textMuted: '#9cc5c2',
+    },
   },
   {
     id: 'burgundy',
@@ -61,6 +103,12 @@ export const PRESET_THEMES = [
     primary: '#8c4357',
     hover: '#763445',
     description: 'Luxurious, rich & bold wine berry',
+    sidebar: {
+      bg: 'linear-gradient(180deg, #3a1320 0%, #240a13 100%)',
+      bgDark: 'linear-gradient(180deg, #280b15 0%, #16050b 100%)',
+      border: 'rgba(140, 67, 87, 0.25)',
+      textMuted: '#d4b4bc',
+    },
   },
   {
     id: 'darkpro',
@@ -68,6 +116,12 @@ export const PRESET_THEMES = [
     primary: '#a78bfa',
     hover: '#8b5cf6',
     description: 'High-contrast modern developer indigo-purple',
+    sidebar: {
+      bg: 'linear-gradient(180deg, #1b1b33 0%, #101021 100%)',
+      bgDark: 'linear-gradient(180deg, #131326 0%, #0a0a16 100%)',
+      border: 'rgba(167, 139, 250, 0.22)',
+      textMuted: '#c5c4e8',
+    },
   },
   {
     id: 'yellow',
@@ -75,6 +129,12 @@ export const PRESET_THEMES = [
     primary: '#b78b26',
     hover: '#9d751b',
     description: 'Warm golden amber & vintage mustard',
+    sidebar: {
+      bg: 'linear-gradient(180deg, #35260c 0%, #231805 100%)',
+      bgDark: 'linear-gradient(180deg, #261a07 0%, #150e02 100%)',
+      border: 'rgba(183, 139, 38, 0.22)',
+      textMuted: '#d8c89f',
+    },
   },
 ];
 
@@ -112,6 +172,41 @@ export function getHoverHex(hex) {
 }
 
 /**
+ * Derives rich, theme-tailored sidebar gradient and colors
+ */
+export function getSidebarStylesForHex(hex) {
+  if (!hex) {
+    return PRESET_THEMES[0].sidebar;
+  }
+  const clean = hex.toLowerCase().trim();
+  const match = PRESET_THEMES.find(t => t.primary.toLowerCase() === clean);
+  if (match?.sidebar) {
+    return match.sidebar;
+  }
+
+  const { r, g, b } = hexToRgb(clean);
+  // Algorithmic deep theme tone for custom colors
+  const rT = Math.max(14, Math.min(65, Math.round(r * 0.28)));
+  const gT = Math.max(14, Math.min(65, Math.round(g * 0.28)));
+  const bT = Math.max(18, Math.min(75, Math.round(b * 0.28)));
+
+  const rB = Math.max(8, Math.min(42, Math.round(r * 0.16)));
+  const gB = Math.max(8, Math.min(42, Math.round(g * 0.16)));
+  const bB = Math.max(12, Math.min(50, Math.round(b * 0.16)));
+
+  const rD = Math.max(5, Math.min(26, Math.round(r * 0.10)));
+  const gD = Math.max(5, Math.min(26, Math.round(g * 0.10)));
+  const bD = Math.max(7, Math.min(32, Math.round(b * 0.10)));
+
+  return {
+    bg: `linear-gradient(180deg, rgb(${rT}, ${gT}, ${bT}) 0%, rgb(${rB}, ${gB}, ${bB}) 100%)`,
+    bgDark: `linear-gradient(180deg, rgb(${rB}, ${gB}, ${bB}) 0%, rgb(${rD}, ${gD}, ${bD}) 100%)`,
+    border: `rgba(${r}, ${g}, ${b}, 0.22)`,
+    textMuted: `rgba(${Math.min(255, r + 130)}, ${Math.min(255, g + 130)}, ${Math.min(255, b + 130)}, 0.72)`,
+  };
+}
+
+/**
  * Injects CSS variables directly onto document root for instant live theming
  */
 export function applyThemeCSS(primaryHex, hoverHex = null) {
@@ -120,6 +215,7 @@ export function applyThemeCSS(primaryHex, hoverHex = null) {
   const hex = primaryHex || '#3478f5';
   const hover = hoverHex || getHoverHex(hex);
   const { r, g, b } = hexToRgb(hex);
+  const sidebarStyles = getSidebarStylesForHex(hex);
 
   const root = document.documentElement;
   root.style.setProperty('--theme-accent', hex);
@@ -129,7 +225,12 @@ export function applyThemeCSS(primaryHex, hoverHex = null) {
   root.style.setProperty('--theme-accent-subtle', `rgba(${r}, ${g}, ${b}, 0.06)`);
   root.style.setProperty('--theme-accent-border', `rgba(${r}, ${g}, ${b}, 0.28)`);
   root.style.setProperty('--theme-accent-shadow', `rgba(${r}, ${g}, ${b}, 0.3)`);
-  root.style.setProperty('--theme-sidebar-border', `rgba(${r}, ${g}, ${b}, 0.12)`);
   root.style.setProperty('--theme-accent-gradient', `linear-gradient(135deg, ${hex} 0%, ${hover} 100%)`);
+
+  // Rich themed sidebar variables
+  root.style.setProperty('--theme-sidebar-bg', sidebarStyles.bg);
+  root.style.setProperty('--theme-sidebar-bg-dark', sidebarStyles.bgDark);
+  root.style.setProperty('--theme-sidebar-border', sidebarStyles.border);
+  root.style.setProperty('--theme-sidebar-text-muted', sidebarStyles.textMuted);
 }
 

@@ -347,7 +347,18 @@ body {
   font-size: 14px;
 }
 
-/* Sidebar */
+/* Sidebar Theme Styling */
+.sidebar-panel {
+  background: var(--theme-sidebar-bg, linear-gradient(180deg, #132440 0%, #0d192d 100%)) !important;
+  border-right: 1px solid var(--theme-sidebar-border, rgba(255, 255, 255, 0.1)) !important;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.dark .sidebar-panel {
+  background: var(--theme-sidebar-bg-dark, linear-gradient(180deg, #0f1c32 0%, #080f1b 100%)) !important;
+  border-right: 1px solid var(--theme-sidebar-border, rgba(255, 255, 255, 0.08)) !important;
+}
+
 .sidebar-link {
   display: flex;
   align-items: center;
@@ -356,24 +367,15 @@ body {
   border-radius: 12px;
   font-size: 13px;
   font-weight: 500;
-  color: #64748b;
+  color: var(--theme-sidebar-text-muted, #cbd5e1);
   cursor: pointer;
   transition: all 0.15s ease;
   text-decoration: none;
 }
 
 .sidebar-link:hover {
-  color: #0f172a;
-  background: var(--theme-accent-subtle, rgba(52, 120, 245, 0.06));
-}
-
-.dark .sidebar-link {
-  color: #94a3b8;
-}
-
-.dark .sidebar-link:hover {
-  color: #f8fafc;
-  background: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.09);
 }
 
 .sidebar-link.active {
