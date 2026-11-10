@@ -353,24 +353,34 @@ body {
   align-items: center;
   gap: 10px;
   padding: 8px 14px;
-  border-radius: 10px;
-  font-size: 14px;
+  border-radius: 12px;
+  font-size: 13px;
   font-weight: 500;
-  color: #94a3b8;
+  color: #64748b;
   cursor: pointer;
   transition: all 0.15s ease;
   text-decoration: none;
 }
 
 .sidebar-link:hover {
-  color: #e2e8f0;
-  background: rgba(255, 255, 255, 0.06);
+  color: #0f172a;
+  background: var(--theme-accent-subtle, rgba(52, 120, 245, 0.06));
+}
+
+.dark .sidebar-link {
+  color: #94a3b8;
+}
+
+.dark .sidebar-link:hover {
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.07);
 }
 
 .sidebar-link.active {
-  color: #ffffff;
-  background: var(--theme-accent, #3b82f6);
-  box-shadow: 0 3px 12px var(--theme-accent-shadow, rgba(59, 130, 246, 0.3));
+  color: #ffffff !important;
+  background: var(--theme-accent, #3b82f6) !important;
+  box-shadow: 0 4px 14px var(--theme-accent-shadow, rgba(59, 130, 246, 0.35)) !important;
+  font-weight: 600;
 }
 
 /* SVG Charts */
